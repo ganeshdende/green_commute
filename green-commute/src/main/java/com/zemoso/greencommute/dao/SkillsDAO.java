@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SkillsDAO extends JpaRepository<Skill,String> {
+    Skill findByName(String name);
 }
