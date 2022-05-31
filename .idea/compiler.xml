@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="green-commute" target="17" />
+      <module name="green-commute" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
