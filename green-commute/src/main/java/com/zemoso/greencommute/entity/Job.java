@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Entity
@@ -40,7 +41,7 @@ public class Job {
         skillsList.remove(skill);
     }
     public List<String> skillsByName(){
-        return skillsList.stream().map(s->s.getName()).toList();
+        return skillsList.stream().map(s->s.getName()).collect(Collectors.toList());
     }
 
 

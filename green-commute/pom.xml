@@ -14,7 +14,7 @@
 	<name>green-commute</name>
 	<description>Demo project for Spring Rest Application</description>
 	<properties>
-<!--		<java.version>17</java.version>-->
+		<java.version>11</java.version>
 		<sonar.organization>ganeshdende</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
