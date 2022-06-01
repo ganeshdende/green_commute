@@ -1,5 +1,6 @@
 package com.zemoso.greencommute.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Table(name = "jobs")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Job {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +32,22 @@ public class Job {
             joinColumns=@JoinColumn(name="id"),
             inverseJoinColumns = @JoinColumn(name="skill_id"))
     List<Skill> skillsList;
+
+    public Job(int id, String title, String company, String locality, String city, int pincode, short bike, short bus, short car, short train, LocalDateTime createdTime) {
+        this.id = id;
+        this.title = title;
+        this.company = company;
+        this.locality = locality;
+        this.city = city;
+        this.pincode = pincode;
+        this.bike = bike;
+        this.bus = bus;
+        this.car = car;
+        this.train = train;
+        this.createdTime = createdTime;
+    }
+
+
     public  void addSkill(Skill skill){
         if(skillsList==null){
             skillsList=new ArrayList<>();
