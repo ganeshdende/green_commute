@@ -6,11 +6,4 @@ public class SkillsNotFoundException extends RuntimeException{
         super(message);
     }
 
-    public SkillsNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public SkillsNotFoundException(Throwable cause) {
-        super(cause);
-    }
 }

@@ -24,7 +24,10 @@ public class Job {
     String locality;
     String city;
     int pincode;
-    short bike,bus,car,train;
+    short bike;
+    short bus;
+    short car;
+    short train;
     @Column(name="created_time")
     LocalDateTime createdTime;
     @ManyToMany(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},fetch = FetchType.EAGER)
@@ -33,18 +36,8 @@ public class Job {
             inverseJoinColumns = @JoinColumn(name="skill_id"))
     List<Skill> skillsList;
 
-    public Job(int id, String title, String company, String locality, String city, int pincode, short bike, short bus, short car, short train, LocalDateTime createdTime) {
+    public Job(int id) {
         this.id = id;
-        this.title = title;
-        this.company = company;
-        this.locality = locality;
-        this.city = city;
-        this.pincode = pincode;
-        this.bike = bike;
-        this.bus = bus;
-        this.car = car;
-        this.train = train;
-        this.createdTime = createdTime;
     }
 
 

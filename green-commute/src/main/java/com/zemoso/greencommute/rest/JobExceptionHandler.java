@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-import java.util.logging.Logger;
 
 @ControllerAdvice
 public class JobExceptionHandler {
 
-    private Logger logger=Logger.getLogger(JobExceptionHandler.class.getName());
     @ExceptionHandler(JobNotFoundException.class)
     public ResponseEntity<JobErrorResponse> handleJobNotFoundException(JobNotFoundException ex){
         JobErrorResponse errorResponse=new JobErrorResponse(HttpStatus.NOT_FOUND.value(),ex.getMessage(),System.currentTimeMillis());

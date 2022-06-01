@@ -7,12 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
+
 
 @RestController
 @RequestMapping("/api")
 public class JobRestController  {
-    private Logger logger=Logger.getLogger(JobRestController.class.getName());
     @Autowired
     JobsService jobsService;
     @GetMapping("/jobs")
@@ -23,7 +22,11 @@ public class JobRestController  {
         else if(cityName.isPresent()&& skills.isEmpty()){
             return jobsService.getByCity(cityName.get());
         }
-        return jobsService.getAllJobsByCityAndSkills(cityName.get(), skills.get());
+        String city = null;
+        if(cityName.isPresent()){
+            city=cityName.get();
+        }
+        return jobsService.getAllJobsByCityAndSkills(city, skills.get());
     }
     @GetMapping("/jobs/{id}")
     public Job getJobs(@PathVariable int id)  {
@@ -43,7 +46,6 @@ public class JobRestController  {
     }
     @PostMapping("/jobs")
     public void saveJob(@RequestBody Job job) {
-        logger.info("job"+job);
         job.setId(0);
 
             jobsService.saveJob(job);
