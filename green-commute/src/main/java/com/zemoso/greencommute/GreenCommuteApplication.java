@@ -13,5 +13,4 @@ public class GreenCommuteApplication {
 	}
 
 }
-//./mvnw verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=ganeshdende -Dsonar.login=51c3738f43962dac8595df6385018f19e2ae2b08 -Dsonar.projectKey=ganeshdende_green_commute
 
