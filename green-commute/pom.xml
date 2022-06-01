@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.0</version>
+		<version>2.6.8</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zemoso</groupId>
@@ -15,6 +15,10 @@
 	<description>Demo project for Spring Rest Application</description>
 	<properties>
 		<java.version>17</java.version>
+	</properties>
+	<properties>
+		<sonar.organization>ganeshdende</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 
@@ -47,6 +51,7 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 			</dependency>
+
 		</dependencies>
 
 

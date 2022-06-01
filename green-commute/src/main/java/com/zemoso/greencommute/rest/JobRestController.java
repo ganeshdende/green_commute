@@ -1,6 +1,7 @@
 package com.zemoso.greencommute.rest;
 
 import com.zemoso.greencommute.entity.Job;
+import com.zemoso.greencommute.exception.JobNotFoundException;
 import com.zemoso.greencommute.service.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api")
-public class JobRestController {
+public class JobRestController  {
     private Logger logger=Logger.getLogger(JobRestController.class.getName());
     @Autowired
     JobsService jobsService;
@@ -25,10 +26,13 @@ public class JobRestController {
         return jobsService.getAllJobsByCityAndSkills(cityName.get(), skills.get());
     }
     @GetMapping("/jobs/{id}")
-    public Job getJobs(@PathVariable int id){
-        Job job = jobsService.getJobById(id);
-        if(job==null){
-            throw new RuntimeException("job with id no found"+id);
+    public Job getJobs(@PathVariable int id)  {
+        Job job;
+        try{
+         job=jobsService.getJobById(id);
+        }
+        catch (Exception ex){
+            throw new JobNotFoundException("Job with id not found:"+id);
         }
         return job;
     }
@@ -49,6 +53,7 @@ public class JobRestController {
     public void delete(@PathVariable int id){
         jobsService.deleteJob(id);
     }
+
 
 
 }
