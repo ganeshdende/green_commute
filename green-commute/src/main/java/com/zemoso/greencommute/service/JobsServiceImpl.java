@@ -2,8 +2,8 @@ package com.zemoso.greencommute.service;
 
 import com.zemoso.greencommute.dao.JobsDAO;
 import com.zemoso.greencommute.entity.Job;
-import com.zemoso.greencommute.entity.Skill;
 import com.zemoso.greencommute.exception.CityNotFoundException;
+import com.zemoso.greencommute.exception.JobNotFoundException;
 import com.zemoso.greencommute.exception.SkillsNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class JobsServiceImpl implements JobsService{
             tempJob=job.get();
          }
          else{
-             throw new RuntimeException("Job with id not found:"+id);
+             throw new JobNotFoundException("Job with id not found:"+id);
          }
          return tempJob;
     }

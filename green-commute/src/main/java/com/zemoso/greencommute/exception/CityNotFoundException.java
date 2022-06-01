@@ -6,11 +6,4 @@ public class CityNotFoundException extends RuntimeException{
         super(message);
     }
 
-    public CityNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
-    public CityNotFoundException(Throwable cause) {
-        super(cause);
-    }
 }
