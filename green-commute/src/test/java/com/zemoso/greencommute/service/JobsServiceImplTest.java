@@ -2,6 +2,7 @@ package com.zemoso.greencommute.service;
 
 import com.zemoso.greencommute.dao.JobsDAO;
 import com.zemoso.greencommute.entity.Job;
+import com.zemoso.greencommute.entity.Skill;
 import com.zemoso.greencommute.exception.CityNotFoundException;
 import com.zemoso.greencommute.exception.JobNotFoundException;
 import com.zemoso.greencommute.exception.SkillsNotFoundException;
@@ -35,8 +36,6 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class JobsServiceImplTest {
-//    @Rule
-//    public MockitoRule mockitoRule= MockitoJUnit.rule();
     @Mock
     JobsDAO jobsDAO;
     @InjectMocks
@@ -87,22 +86,23 @@ public class JobsServiceImplTest {
             throw new CityNotFoundException("No jobs are found in current city");
         }
     }
-    @Test(expected= CityNotFoundException.class)
-    public void getAllJobsByCityAndSkills_jobsList() {
-        when(jobsDAO.findByCity("mumbai")).thenReturn(Arrays.asList(new Job(1),new Job(2)));
-        List<Job> jobs=jobsServiceImpl.getByCity("mumbai");
-
-    }
-    @Test(expected= SkillsNotFoundException.class)
+    @Test(expected=SkillsNotFoundException.class)
     public void getAllJobsByCityAndSkills_matchedJobsEmpty() {
-        List<String> skills=mock(List.class);
-        System.out.println( skills.size());
-        if(skills.size()==0){
-            throw  new SkillsNotFoundException("not found");
+
+        Job job=new Job(1);
+        Job job1=new Job(2);
+        job.addSkill(new Skill("c++",2));
+        job1.addSkill(new Skill("spring",2));
+
+        when(jobsDAO.findByCity("mumbai")).thenReturn(Arrays.asList(job,job1));
+
+        List<Job> jobs=jobsServiceImpl.getAllJobsByCityAndSkills("mumbai",Arrays.asList("python","java"));
+        if(jobs.isEmpty()){
+            throw new SkillsNotFoundException("skills not found");
         }
 
-
-
     }
+
+
 }
 
